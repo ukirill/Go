@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple "Go-Websockets" Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>-->
+    <script type="text/javascript" src="app.js" defer></script>
+    <style>
+        html, body, messages {
+        min-height: 100%;
+    }</style>
+</head>
+<body>
+    <div class = "container" id = "mainapp">
+        <div class="row" id="notify" style="display: none">
+            <div class="col s4">
+                <span class="light-blue-text" id="notifyText">Notification</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s4" id="loginBlock">
+                <input  id="loginInput" type="text" placeholder="Username">
+                <button class="waves-effect waves-light btn light-blue" onclick="loginClick()" id="loginButton">
+                    Join
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s8" id="messageBlock" style="display: none">
+                <div class="chip light-blue" id="usernameTag">username</div>
+                <input class="" id="messageInput" type="text" placeholder="Message text">
+                <button class="waves-effect waves-light btn light-blue" onclick="sendMessage()" id="sendButton">
+                    Send
+                </button>
+            </div>
+        </div>
+        <div class="row" id="chatBlock" style="display: none">
+            <div class="col s8" id="chat">
+                <label for="chatList">Messages</label>
+                <div class="card" id="chatList" >
+                    <div class="card-content messages" id="chatMessages" style="overflow-y: auto; height: 60vh">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col s4" id="usernameList" title="Users List">
+                <label for="usersList">Users</label>
+                <div class="card" id="usersList">           </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
