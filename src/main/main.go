@@ -118,7 +118,7 @@ func sendErrorMessage(ws *websocket.Conn, st *State) {
 }
 
 func checkLogin(s string) bool {
-	var str = "[^A-Za-z0-9]"
+	var str = "[$,]"
 	regex, _ := regexp.Compile(str)
 	if s == "" {
 		return false
@@ -126,7 +126,7 @@ func checkLogin(s string) bool {
 		return false
 	}
 	return true
-} //Add special symbol check?
+} //
 
 func parseServiceMessage(msg *Message, ws *websocket.Conn) {
 	if msg.Username == STATE {
