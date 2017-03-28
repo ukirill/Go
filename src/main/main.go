@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
+	"regexp"
 )
 
 const MAX_CLIENTS = 5
@@ -117,10 +118,14 @@ func sendErrorMessage(ws *websocket.Conn, st *State) {
 }
 
 func checkLogin(s string) bool {
-	if s != "" {
-		return true
+	var str = "[^A-Za-z0-9]"
+	regex, _ := regexp.Compile(str)
+	if s == "" {
+		return false
+	} else if regex.MatchString(s) {
+		return false
 	}
-	return false
+	return true
 } //Add special symbol check?
 
 func parseServiceMessage(msg *Message, ws *websocket.Conn) {

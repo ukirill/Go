@@ -117,14 +117,16 @@ function parseUserList(msg) {
             ul.appendChild(container.firstChild);
         }
     })
-} //
+}
+
+//Show 3 different interfaces
 
 function showLoginState(){
     makeVisible("loginBlock");
     makeHidden("messageBlock");
     makeHidden("chatBlock");
     makeHidden("notify")
-} //basically done
+} //
 
 function showUserState(){
     makeHidden("loginBlock");
@@ -140,11 +142,7 @@ function showUserState(){
             }
         });
 
-    document.getElementById("chatMessages").style.height = ("calc(100vh - " +
-        document.getElementById("messageBlock").getBoundingClientRect().height +
-        ")");
-
-} //basically done
+} //
 
 function showQueueState() {
     makeHidden("loginBlock");
@@ -152,17 +150,17 @@ function showQueueState() {
     makeHidden("chatBlock");
     document.getElementById("notifyText").innerHTML = state.username + ", please wait for free slot";
     makeVisible("notify");
-} //maybe later
+} //
 
 function makeVisible(id){
     var e = document.getElementById(id);
     e.style.display = 'block';
     document.getElementById("usernameTag").innerHTML = state.username;
-} //done
+} //
 
 function makeHidden(id) {
     var e = document.getElementById(id);
     e.style.display = 'none';
-} //done
+} //
 
 
