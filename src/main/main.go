@@ -14,7 +14,7 @@ const MAX_QUEUE = 30
 const STATE = "$STATE"
 const ERROR = "$ERROR"
 
-var clients = make(map[*websocket.Conn]string)       // all connected clients
+//var clients = make(map[*websocket.Conn]string)       // all connected clients
 var onlineClients = make(map[*websocket.Conn]string) // allowed clients
 var queueClients = q.NewQueue(MAX_QUEUE)             // delayed clients order
 var broadcast = make(chan Message)                   // broadcast channel
@@ -60,7 +60,7 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 	// Make sure we close the connection when the function returns
 	defer ws.Close()
 	// Register our new client
-	clients[ws] = ""
+	//clients[ws] = ""
 
 	for {
 		var msg Message
@@ -168,7 +168,7 @@ func addClientFromQueue() {
 		for {
 			if dc != nil { //Queue not empty
 				if dc.WS != nil { //Client in queue online
-					clients[dc.WS] = dc.Username
+					//clients[dc.WS] = dc.Username
 					onlineClients[dc.WS] = dc.Username
 					st.Username = dc.Username
 					st.Status = 1
@@ -185,7 +185,7 @@ func addClientFromQueue() {
 }
 
 func deleteClient(client *websocket.Conn) {
-	delete(clients, client)
+	//delete(clients, client)
 	delete(onlineClients, client)
 	addClientFromQueue()
 	refreshUsersList()
