@@ -1,7 +1,6 @@
 package main
 
 import (
-	q "clientqueue"
 	"encoding/json"
 	"github.com/gorilla/websocket"
 	"log"
@@ -16,7 +15,7 @@ const ERROR = "$ERROR"
 
 //var clients = make(map[*websocket.Conn]string)       // all connected clients
 var onlineClients = make(map[*websocket.Conn]string) // allowed clients
-var queueClients = q.NewQueue(MAX_QUEUE)             // delayed clients order
+var queueClients = NewQueue(MAX_QUEUE)               // delayed clients order
 var broadcast = make(chan Message)                   // broadcast channel
 var upgrader = websocket.Upgrader{}
 
@@ -131,7 +130,7 @@ func checkLogin(s string) bool {
 func parseServiceMessage(msg *Message, ws *websocket.Conn) {
 	if msg.Username == STATE {
 		var st = State{}
-		var cl = q.Client{}
+		var cl = Client{}
 		if json.Unmarshal([]byte(msg.Text), &st) == nil {
 			if checkLogin(st.Username) {
 				if len(onlineClients) < MAX_CLIENTS { //Go to chat
